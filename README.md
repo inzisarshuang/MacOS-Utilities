@@ -1,6 +1,6 @@
 # MacOS-Utilities 
 
-A collection of useful utility scripts for MacOS. 
+A collection of useful utility scripts for MacOS.  
 一个在 MacOS 系统下的实用工具脚本集合。
 
 ---
