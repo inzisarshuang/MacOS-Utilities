@@ -1,6 +1,6 @@
 Attribute VB_Name = "ExportPPTNotes"
 ' ============================================================
-' º¯Êı1£ºµ¼³ö±¸×¢ÎªTXT¸ñÊ½
+' å‡½æ•°1ï¼šå¯¼å‡ºå¤‡æ³¨ä¸ºTXTæ ¼å¼
 ' ============================================================
 Sub ExportNotesToTXT()
     Dim sld As Slide
@@ -10,15 +10,15 @@ Sub ExportNotesToTXT()
     Dim fileNum As Integer
     Dim filePath As String
     
-    ' ³õÊ¼»¯
+    ' åˆå§‹åŒ–
     allNotes = ""
     i = 1
     
-    ' ÊÕ¼¯ËùÓĞ±¸×¢
+    ' æ”¶é›†æ‰€æœ‰å¤‡æ³¨
     For Each sld In ActivePresentation.Slides
         notesText = "(No Notes)"
         
-        ' ¼ì²éÊÇ·ñÓĞ±¸×¢ÄÚÈİ
+        ' æ£€æŸ¥æ˜¯å¦æœ‰å¤‡æ³¨å†…å®¹
         If sld.NotesPage.Shapes.Count > 1 Then
             On Error Resume Next
             notesText = sld.NotesPage.Shapes(2).TextFrame.TextRange.text
@@ -28,14 +28,14 @@ Sub ExportNotesToTXT()
             On Error GoTo 0
         End If
         
-        ' Ìí¼Óµ½×ÜÎÄ±¾
+        ' æ·»åŠ åˆ°æ€»æ–‡æœ¬
         allNotes = allNotes & "Slide " & i & ":" & vbCrLf
         allNotes = allNotes & CleanText(notesText, "TXT") & vbCrLf & vbCrLf
         
         i = i + 1
     Next sld
     
-    ' ÉèÖÃÎÄ¼şÂ·¾¶²¢Ğ´Èë
+    ' è®¾ç½®æ–‡ä»¶è·¯å¾„å¹¶å†™å…¥
     filePath = GetDesktopPath() & "PPT_Notes.txt"
     fileNum = FreeFile()
     
@@ -47,7 +47,7 @@ Sub ExportNotesToTXT()
 End Sub
 
 ' ============================================================
-' º¯Êı2£ºµ¼³ö±¸×¢ÎªCSV¸ñÊ½
+' å‡½æ•°2ï¼šå¯¼å‡ºå¤‡æ³¨ä¸ºCSVæ ¼å¼
 ' ============================================================
 Sub ExportNotesToCSV()
     Dim sld As Slide
@@ -57,22 +57,22 @@ Sub ExportNotesToCSV()
     Dim filePath As String
     Dim csvLine As String
     
-    ' ³õÊ¼»¯
+    ' åˆå§‹åŒ–
     i = 1
     
-    ' ÉèÖÃÎÄ¼şÂ·¾¶
+    ' è®¾ç½®æ–‡ä»¶è·¯å¾„
     filePath = GetDesktopPath() & "PPT_Notes.csv"
     fileNum = FreeFile()
     
-    ' ´ò¿ªÎÄ¼ş²¢Ğ´ÈëCSV±íÍ·
+    ' æ‰“å¼€æ–‡ä»¶å¹¶å†™å…¥CSVè¡¨å¤´
     Open filePath For Output As fileNum
     Print #fileNum, "SlideID,NotesContent"  ' CSV header
     
-    ' ÎªÃ¿Ò»ÕÅ»ÃµÆÆ¬´´½¨ÌõÄ¿
+    ' ä¸ºæ¯ä¸€å¼ å¹»ç¯ç‰‡åˆ›å»ºæ¡ç›®
     For Each sld In ActivePresentation.Slides
         notesText = "(No Notes)"
         
-        ' ¼ì²éÊÇ·ñÓĞ±¸×¢ÄÚÈİ
+        ' æ£€æŸ¥æ˜¯å¦æœ‰å¤‡æ³¨å†…å®¹
         If sld.NotesPage.Shapes.Count > 1 Then
             On Error Resume Next
             notesText = sld.NotesPage.Shapes(2).TextFrame.TextRange.text
@@ -82,13 +82,13 @@ Sub ExportNotesToCSV()
             On Error GoTo 0
         End If
         
-        ' ´¦Àí±¸×¢ÄÚÈİÖĞµÄÌØÊâ×Ö·û
+        ' å¤„ç†å¤‡æ³¨å†…å®¹ä¸­çš„ç‰¹æ®Šå­—ç¬¦
         notesText = CleanText(notesText, "CSV")
         
-        ' ¹¹½¨CSVĞĞ
+        ' æ„å»ºCSVè¡Œ
         csvLine = "Slide" & i & "," & Chr(34) & notesText & Chr(34)
         
-        ' Ğ´ÈëÎÄ¼ş
+        ' å†™å…¥æ–‡ä»¶
         Print #fileNum, csvLine
         
         i = i + 1
@@ -99,26 +99,26 @@ Sub ExportNotesToCSV()
 End Sub
 
 ' ============================================================
-' µ÷ÊÔº¯Êı£º²âÊÔÂ·¾¶»ñÈ¡
+' è°ƒè¯•å‡½æ•°ï¼šæµ‹è¯•è·¯å¾„è·å–
 ' ============================================================
 Sub TestPath()
-    ' Õâ¸öº¯Êı¿ÉÒÔ°ïÖúÄú²âÊÔÄÄÖÖÂ·¾¶»ñÈ¡·½·¨ÓĞĞ§
+    ' è¿™ä¸ªå‡½æ•°å¯ä»¥å¸®åŠ©æ‚¨æµ‹è¯•å“ªç§è·¯å¾„è·å–æ–¹æ³•æœ‰æ•ˆ
     Dim TestPath As String
     
     TestPath = GetDesktopPath()
     
-    MsgBox "µ±Ç°×ÀÃæÂ·¾¶Îª£º" & vbCrLf & TestPath & _
-           vbCrLf & vbCrLf & "Èç¹ûÕâ¸öÂ·¾¶²»ÕıÈ·£¬ÇëĞŞ¸Ä GetDesktopPath º¯ÊıÖĞµÄÂ·¾¶Ñ¡Ïî¡£"
+    MsgBox "å½“å‰æ¡Œé¢è·¯å¾„ä¸ºï¼š" & vbCrLf & TestPath & _
+           vbCrLf & vbCrLf & "å¦‚æœè¿™ä¸ªè·¯å¾„ä¸æ­£ç¡®ï¼Œè¯·ä¿®æ”¹ GetDesktopPath å‡½æ•°ä¸­çš„è·¯å¾„é€‰é¡¹ã€‚"
 End Sub
 
 ' ============================================================
-' Í¨ÓÃº¯Êı£º»ñÈ¡×ÀÃæÂ·¾¶£¨¶àÖÖÑ¡Ïî£©
+' é€šç”¨å‡½æ•°ï¼šè·å–æ¡Œé¢è·¯å¾„ï¼ˆå¤šç§é€‰é¡¹ï¼‰
 ' ============================================================
 Function GetDesktopPath() As String
     #If Mac Then
-        ' ===== Mac ÏµÍ³ =====
+        ' ===== Mac ç³»ç»Ÿ =====
         
-        ' ÓÅÏÈ³¢ÊÔÊ¹ÓÃ»·¾³±äÁ¿»ñÈ¡Â·¾¶
+        ' ä¼˜å…ˆå°è¯•ä½¿ç”¨ç¯å¢ƒå˜é‡è·å–è·¯å¾„
         On Error Resume Next
         GetDesktopPath = Environ("HOME") & "/Desktop/"
         If Err.Number = 0 And GetDesktopPath <> "" Then
@@ -127,7 +127,7 @@ Function GetDesktopPath() As String
         End If
         On Error GoTo 0
         
-        ' Èç¹û»·¾³±äÁ¿·½·¨Ê§°Ü£¬Ê¹ÓÃ AppleScript »ñÈ¡Â·¾¶
+        ' å¦‚æœç¯å¢ƒå˜é‡æ–¹æ³•å¤±è´¥ï¼Œä½¿ç”¨ AppleScript è·å–è·¯å¾„
         On Error Resume Next
         GetDesktopPath = MacScript("return (path to desktop as string)")
         If Err.Number = 0 Then
@@ -136,13 +136,13 @@ Function GetDesktopPath() As String
         End If
         On Error GoTo 0
         
-        ' Èç¹û×Ô¶¯·½·¨¶¼Ê§°Ü£¬Ê¹ÓÃÓ²±àÂëÂ·¾¶
+        ' å¦‚æœè‡ªåŠ¨æ–¹æ³•éƒ½å¤±è´¥ï¼Œä½¿ç”¨ç¡¬ç¼–ç è·¯å¾„
         GetDesktopPath = "/Users/inzisarshuang/Desktop/"
         
     #Else
-        ' ===== Windows ÏµÍ³ =====
+        ' ===== Windows ç³»ç»Ÿ =====
         
-        ' ÓÅÏÈ³¢ÊÔÊ¹ÓÃ»·¾³±äÁ¿»ñÈ¡Â·¾¶
+        ' ä¼˜å…ˆå°è¯•ä½¿ç”¨ç¯å¢ƒå˜é‡è·å–è·¯å¾„
         On Error Resume Next
         GetDesktopPath = Environ("USERPROFILE") & "\Desktop\"
         If Err.Number = 0 And GetDesktopPath <> "" Then
@@ -151,14 +151,14 @@ Function GetDesktopPath() As String
         End If
         On Error GoTo 0
         
-        ' Èç¹û»·¾³±äÁ¿·½·¨Ê§°Ü£¬Ê¹ÓÃÓ²±àÂëÂ·¾¶
+        ' å¦‚æœç¯å¢ƒå˜é‡æ–¹æ³•å¤±è´¥ï¼Œä½¿ç”¨ç¡¬ç¼–ç è·¯å¾„
         GetDesktopPath = "C:\Users\YourUsername\Desktop\"
         
     #End If
 End Function
 
 ' ============================================================
-' Í¨ÓÃº¯Êı£ºÇåÀíÎÄ±¾ÄÚÈİ
+' é€šç”¨å‡½æ•°ï¼šæ¸…ç†æ–‡æœ¬å†…å®¹
 ' ============================================================
 Function CleanText(text As String, Optional formatType As String = "TXT") As String
     If Trim(text) = "" Then
@@ -168,14 +168,14 @@ Function CleanText(text As String, Optional formatType As String = "TXT") As Str
     
     Select Case formatType
         Case "CSV"
-            ' CSV¸ñÊ½ĞèÒªÌØÊâ´¦Àí
-            CleanText = Replace(text, Chr(34), "'")  ' Ìæ»»Ë«ÒıºÅ
-            CleanText = Replace(CleanText, ",", "£¬")   ' Ìæ»»Ó¢ÎÄ¶ººÅ
-            CleanText = Replace(CleanText, vbCrLf, " | ")  ' Ìæ»»»»ĞĞ·û
+            ' CSVæ ¼å¼éœ€è¦ç‰¹æ®Šå¤„ç†
+            CleanText = Replace(text, Chr(34), "'")  ' æ›¿æ¢åŒå¼•å·
+            CleanText = Replace(CleanText, ",", "ï¼Œ")   ' æ›¿æ¢è‹±æ–‡é€—å·
+            CleanText = Replace(CleanText, vbCrLf, " | ")  ' æ›¿æ¢æ¢è¡Œç¬¦
             CleanText = Replace(CleanText, vbCr, " | ")
             CleanText = Replace(CleanText, vbLf, " | ")
         Case Else
-            ' TXT¸ñÊ½±£³ÖÔ­Ñù
+            ' TXTæ ¼å¼ä¿æŒåŸæ ·
             CleanText = text
     End Select
 End Function
