@@ -14,8 +14,8 @@ A collection of useful utility scripts for MacOS.
 - `mount_ntfs.sh` — Automatically detects and mounts NTFS-formatted (Windows) drives on the system. 
 `mount_ntfs.sh` — 用于自动检测并挂载系统中的 ntfs 格式（Windows专用）硬盘。
 
-- `ExportPPTNotes.bas` — VBA macro that automatically extracts speaker notes from all slides in a PowerPoint presentation and exports them to a file on the desktop. Compatible with both Windows and macOS versions of PowerPoint.  
-`ExportPPTNotes.bas` — VBA宏代码，用于自动提取PowerPoint演示文稿中所有幻灯片的演讲者备注，并将其导出到一个文件桌面中。兼容Windows和macOS版本的PowerPoint。
+- `exportPPTnotes.bas` — VBA macro that automatically extracts speaker notes from all slides in a PowerPoint presentation and exports them to a file on the desktop. Compatible with both Windows and macOS versions of PowerPoint.  
+  `exportPPTnotes.bas` — VBA宏代码，用于自动提取PowerPoint演示文稿中所有幻灯片的演讲者备注，并将其导出到一个文件桌面中。兼容Windows和macOS版本的PowerPoint。
 
 ---
 
