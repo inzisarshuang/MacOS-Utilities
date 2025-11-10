@@ -1,8 +1,9 @@
 Attribute VB_Name = "exportPPTnotes"
 ' ============================================================
-' 全局常量：定义基础路径（只需修改这一处）
+' 全局常量：定义基础路径（只需自行修改这一处）
 ' ============================================================
-Private Const BASE_PATH As String = "/Users/inzisarshuang/Desktop/"
+'Private Const BASE_PATH As String = "/Users/inzisarshuang/Desktop/" 'MAC 环境
+Private Const BASE_PATH As String = "C:\Users\Lenovo\Desktop\" 'Windows 环境
 
 ' ============================================================
 ' 路径测试函数：检查当前基础路径是否可用
